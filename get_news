@@ -1,0 +1,3 @@
+#!/bin/bash
+
+php /usr/share/info6005-pc3g11/index.php
