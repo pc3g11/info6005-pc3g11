@@ -1,0 +1,73 @@
+#!/usr/bin/make -f
+
+script1 = $(CURDIR)/index.php
+script2 = $(CURDIR)/rss_php.php
+feeds = $(CURDIR)/feeds.conf
+launcher = $(CURDIR)/info6005-pc3g11.desktop
+executablefile = $(CURDIR)/bat
+new_command1 = $(CURDIR)/get_news
+mannual_command1 = $(CURDIR)/debian/info6005-pc3g11.1.gz
+mannual_command2 = $(CURDIR)/debian/get_news.1.gz
+
+PATH1 =  $(CURDIR)/debian/info6005-pc3g11/usr/share/info6005-pc3g11
+PATH2 =  $(CURDIR)/debian/info6005-pc3g11/usr/share/applications
+PATH3 =  $(CURDIR)/debian/info6005-pc3g11/usr/bin
+PATH4 = $(CURDIR)/debian/info6005-pc3g11/usr/share/man/man1
+
+build: build-stamp
+build: build-arch build-indep
+
+build-arch: build-stamp
+build-indep: build-stamp
+   
+build-stamp:
+	dh_testdir
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	dh_clean
+
+install: build clean $(script1) $(script2) $(feeds) $(launcher) $(batfile) $(new_command1) $(mannual_command1) $(mannual_command2)
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+
+	mkdir -m 755 -p $(PATH1)
+	mkdir -m 755 -p $(PATH2)
+	mkdir -m 755 -p $(PATH3)
+	mkdir -m 755 -p $(PATH4)
+
+	install -m 666 $(script1) $(PATH1)
+	install -m 666 $(script2) $(PATH1)
+	install -m 666 $(feeds) $(PATH1)
+	install -m 777 $(executablefile) $(PATH1)
+	install -m 777 $(launcher) $(PATH2)
+	install -m 666 $(new_command1) $(PATH3)
+	install -m 666 $(mannual_command1) $(PATH4)
+	install -m 666 $(mannual_command2) $(PATH4)
+
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_installman
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+	
+
+
+binary-arch: build install
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
