@@ -1,0 +1,13 @@
+Package: info6005-pc3g11
+Version: 1.0
+Architecture: i386
+Maintainer: panayiotis christofi <pc3g11@soton.ac.uk>
+Installed-Size: 92
+Depends: php5-cli
+Section: net
+Priority: extra
+Homepage: http://soton.ac.uk
+Description: 6005_cw1_2012 - the Simple PHP RSS Reader for INFO6005
+ This is part of a coursework for
+ Students on the INFO6005 course
+ at the University of Southampton.
