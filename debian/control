@@ -1,0 +1,15 @@
+Source: info6005-pc3g11
+Section: net
+Priority: extra
+Maintainer: panayiotis christofi <pc3g11@soton.ac.uk>
+Build-Depends: debhelper (>= 7.0.0)
+Standards-Version: 3.8.4
+Homepage: http://soton.ac.uk
+
+Package: info6005-pc3g11
+Architecture: any
+Depends: ${misc:Depends}, php5-cli
+Description: 6005_cw1_2012 - the Simple PHP RSS Reader for INFO6005
+ This is part of a coursework for 
+ Students on the INFO6005 course 
+ at the University of Southampton.
